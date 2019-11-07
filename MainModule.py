@@ -10,35 +10,21 @@ import pandas as pd
 import os
 import csv
 
-if not os.path.isdir('data'):
-    print('Error: need to create data/ and supply csv file of historical stock prices to it')
+if not os.path.isdir('data') or os.listdir('data') == []:
+    print("must run get_data.py first")
     exit()
 
 files = os.listdir('data')
-       
-if files == []:
-    print('Error: need to supply csv file of historical stock prices to it')
-    exit()
-     
 df = None
+
 #outputfile = 'results/output.csv'
 #files = ['AAPL.csv']
 if not os.path.isdir('results'):
     os.mkdir('results')
 
-outputfile = 'results/' + files[0].split('.')[0] + '_output.csv'
-
-if os.path.isfile(outputfile):
-    os.remove(outputfile)
-
-#if os.path.exists(outputfile):
-#    os.remove(outputfile)
 
 features = ['date','SMA_rating','PF_rating','high','close','asset','returns']
 
-with open(outputfile,'a') as f:
-    writer = csv.writer(f)
-    writer.writerow(features)
 
 # here's the magic
 inc = 1
@@ -55,7 +41,15 @@ for fl in files:
     ma_results['close'] = pf_results['close']
     ma_results['asset'] = os.path.splitext(fl)[0]
     ma_results['returns'] = ma_results['close'].diff()
+
+    outputfile = 'results/' + fl.split('.')[0] + '_output.csv'
+
+    # maybe find a way to save previous output files
+    if os.path.isfile(outputfile):
+        os.remove(outputfile)
     with open(outputfile,'a') as f:
+        writer = csv.writer(f)
+        writer.writerow(features)
         ma_results.to_csv(f, header=False)
         
     #results.append(ma_results)

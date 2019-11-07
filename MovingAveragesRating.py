@@ -103,56 +103,21 @@ def getFrequencyRange(data, frequency, start_idx, end_idx):
     #print(sub_indices)
     return sub_indices
 
-
-# In[29]:
-
-
 # need to pass in start and end data frequency (d= days, w=weeks, m=months, y=years) and list of companies
 def get_MA_Ratings(MA):
 
-        # get time period
-#    MA = pd.DataFrame(full_data.iloc[getFrequencyRange(full_data, frequency, start_index, end_index)], columns=['adj_close','date'])
-    #print(MA)
-    
-
-        # round to whole number
+    # round to whole number
     MA['Price'] = np.round(MA['close'])
 
-
     MA['20d'] = np.round(MA['close'].rolling(window =20, center = False).mean(),2)
-        #print(MA.tail())
 
     MA['50d'] = np.round(MA['close'].rolling(window =50, center = False).mean(),2)
-        #print(MA.tail())
 
     MA['200d'] = np.round(MA['close'].rolling(window =200, center = False).mean(),2)
-        #print(MA.tail())
 
+    MA['SMA_rating'] = MA.apply(lambda x: rating(x['Price'], x['50d'], x['200d']), axis=1)
+    MA['SMA_rating'] = MA.apply(lambda x: rating(x['Price'], x['50d'], x['200d']), axis=1)
     MA['SMA_rating'] = MA.apply(lambda x: rating(x['Price'], x['50d'], x['200d']), axis=1)
     MA = pd.DataFrame(MA, columns=['date','SMA_rating'])
     return MA
-#    return MA[MA['date'].isin(query_list)]
-
-
-# In[31]:
-
-
-# testing
-#d = pd.read_csv('data/V.csv')
-#d = get_MA_Ratings(d)
-#print(d)
-
-
-# In[33]:
-
-
-# for i in range(len(d)):
-#     print(d.iloc[i])
-#d
-
-
-# In[ ]:
-
-
-
 

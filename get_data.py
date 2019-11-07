@@ -62,25 +62,6 @@ if not ((args.alpha_vantage==None and not args.stock_charts==None) or (not args.
 if not ((args.file==None and not args.SP500==None) or (not args.file==None and args.SP500==None)):
     parser.error("need to supply exclusively either a file with tickers or integer of number of requested tickers from S&P 500")
 
-
-tickFile = None
-tickAmount = None
-userName = None
-passWord = None
-cdPath = None
-av_key = None
-
-if args.file:
-    tickFile = args.file
-if args.SP500:
-    tickAmount = args.SP500
-if args.stock_charts:
-    userName = args.stock_charts[0]
-    passWord = args.stock_charts[1]
-    cdPath = args.stock_charts[2]
-if args.alpha_vantage:
-    av_key = args.alpha_vantage
-
 # argument passing: END
 
 def dataSP(amount):
@@ -100,14 +81,30 @@ def dataSP(amount):
 
     return stocks50
 
+tickFile = None
+tickAmount = None
+userName = None
+passWord = None
+cdPath = None
+av_key = None
+
 # get tickers from S&P 500 or file
 tickers = []
-if tickAmount > 0:
-    tickers =  dataSP(tickAmount)
-else:
+
+if args.file:
+    tickFile = args.file
     with open(tickFile) as f:
         for tick in f.readlines():
             tickers.append(tick.strip())
+if args.SP500:
+    tickAmount = args.SP500
+    tickers =  dataSP(tickAmount)
+if args.stock_charts:
+    userName = args.stock_charts[0]
+    passWord = args.stock_charts[1]
+    cdPath = args.stock_charts[2]
+if args.alpha_vantage:
+    av_key = args.alpha_vantage
 
 if not os.path.isdir('data'):
     os.mkdir('data')
@@ -199,13 +196,18 @@ def avData():
     print(tickers)
 
     for ticker in tickers:
+
+        try:
+            data, meta_data = ts.get_daily_adjusted(symbol=ticker.strip(), outputsize='full') # Download the daily data
+        except:
+            print(ticker + " is not available on alpha vantage")
+            continue
         print(ticker)
         t = t + 1
-        data, meta_data = ts.get_daily_adjusted(symbol=ticker.strip(), outputsize='full') # Download the daily data
 
         data.drop(['1. open','4. close','6. volume','7. dividend amount', '8. split coefficient'],axis=1, inplace=True)
         #data.insert(1, 'company' ,ticker)
-        data.rename(columns = {'2. high':'high','3. low':'low','5. adjusted close':'adj_close'}, inplace = True)
+        data.rename(columns = {'2. high':'high','3. low':'low','5. adjusted close':'close'}, inplace = True)
         
         # Add the dataframe to the list
         if t%5 == 0:
