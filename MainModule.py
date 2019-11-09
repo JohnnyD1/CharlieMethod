@@ -5,7 +5,7 @@
 
 import sys
 from MovingAveragesRating import get_MA_Ratings
-from PointFigureRating_HLv3 import get_PF_Ratings
+from PointFigureRating import get_PF_Ratings
 import pandas as pd
 import os
 import csv
