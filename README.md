@@ -84,13 +84,13 @@ run the following command:
 python BuySellTesting.py -f FILE -pfb [P&F buy rating [P&F buy rating ...]] -pfs [P&F sell rating [P&F sell rating ...]] -smab [SMA buy rating [SMA buy rating ...]] -smas [SMA sell rating [SMA sell rating ...]] -sh_amt share amount -bf buy fee
 ```
 Every argument is required:
-    -The flag -f should include one of the csv files in results/ that was created by running MainModule.py. 
-    -The flag -pfb should include a list (1 or more) of the ratings 1-4 for the P&F chart that you want to buy on.
-    -The flag -pfs should include a list of ratings (1 or more) of the ratings 1-4 for the P&F chart that you want to sell on.
-    -The flag -smab should include a list of ratings (1 or more) of the ratings 1-6 for the SMA chart that you want to buy on.
-    -The flag -smas should include a list of ratings (1 or more) of the ratings 1-6 for the SMA chart that you want to sell on.
-    -The flag -sh_amt should include a single integer representing how many shares you'd like to buy.
-    -The flag -bf should include a float representing a buying fee. If none, pass in 0 or 0.0.
+- The flag -f should include one of the csv files in results/ that was created by running MainModule.py. 
+- The flag -pfb should include a list (1 or more) of the ratings 1-4 for the P&F chart that you want to buy on.
+- The flag -pfs should include a list of ratings (1 or more) of the ratings 1-4 for the P&F chart that you want to sell on.
+- The flag -smab should include a list of ratings (1 or more) of the ratings 1-6 for the SMA chart that you want to buy on.
+- The flag -smas should include a list of ratings (1 or more) of the ratings 1-6 for the SMA chart that you want to sell on.
+- The flag -sh_amt should include a single integer representing how many shares you'd like to buy.
+- The flag -bf should include a float representing a buying fee. If none, pass in 0 or 0.0.
 
 A couple examples are given:
 ```
