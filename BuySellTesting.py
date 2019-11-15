@@ -166,8 +166,7 @@ print ("total simulated profit in USD: " + str(tot_prof))
 
 
 tot_invest = df_sorted[idx_start:idx_end]['amt_bought'].sum()
-print("total amount of stocks bought")
-print(tot_invest)
+print("total cost of buying stocks: " + str(tot_invest))
 
 print("percentage gain: " + str((tot_invest+tot_prof)/tot_invest))
 

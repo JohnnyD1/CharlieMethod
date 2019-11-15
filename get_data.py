@@ -10,7 +10,6 @@ import random
 from alpha_vantage.timeseries import TimeSeries
 import pandas as pd
 import time
-import sys
 from io import StringIO
 
 #print("/Users/johnnyd/Downloads/chromedriver")

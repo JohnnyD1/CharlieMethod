@@ -1,17 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[20]:
-
-
-# call 
 import numpy as np
 import pandas as pd
 import sys
 import datetime
-
-
-# In[21]:
 
 
 def rating(ma_short, ma_median, ma_long):
@@ -32,37 +25,6 @@ def rating(ma_short, ma_median, ma_long):
         rating = 6
         
     return rating
-
-
-# In[22]:
-
-
-# def getIncrementalRatings(frequency, d):
-#     section = 0
-#     if frequency == 'w':
-#         # can fix later to have it be exact week
-#         section = 7
-#     elif frequency == 'm':
-#         # can fix later to have it be exact months
-#         section = 30
-#     else:
-#         section = 365
-    
-#     assets = []
-    
-#     # get ratings in incremental orders
-#     #print(len(d[0]))
-#     #print(d[0])
-# #    return
-# #    for company in d:
-        
-#     assets.append(d.iloc[range(0, len(d), section)])
-        
-#     #print(assets)
-#     return assets
-
-
-# In[23]:
 
 
 def date2Days(date):
