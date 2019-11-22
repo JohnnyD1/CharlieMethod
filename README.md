@@ -11,10 +11,13 @@ The rating rules are as follows:
 1 is assigned as a rating if:
 - the current column of boxes are X's
 - 1 or more boxes are added to the top of the current column that are higher than the top of the most recent column of Os
+
 2 is assigned as a rating if:
 - The current column has switched from Xs to Os
+
 3 is assigned as a rating if:
 - The current column has switched from Os to Xs
+
 4 is assigned as your rating if:
 - The current column of boxes are Os
 - 1 or more boxes are added to the bottom of the current column that are lower than the bottom of the most recent column of Xs
@@ -25,14 +28,19 @@ Given these rules, one approach could be to buy on a 1 and sell on a 2, 3, or 4.
 This uses the 20, 50, and 200 day trendlines. The rating rules are as follows:
 1 is assigned as the rating if:
 - The 20 is equal to or above the 50, and the 50 is equal to or above the 200
+
 2 is assigned as the rating if:
 - The 20 is below the 50, but the 20 is equal to or above the 200
+
 3 is assigned as the rating if:
 - The 50 is equal to or above the 200, and the 200 is above the 20
+
 4 is assigned as the rating if:
 - The 200 is above the 50, and the 50 is above the 20
+
 5 is assigned as the rating if:
 - The 200 is above the 20, and the 20 is equal to or above the 50
+
 6 is assigned as the rating if:
 - The 20 is equal to or above the 200, and the 200 is above the 50
 
