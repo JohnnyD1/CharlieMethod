@@ -41,7 +41,7 @@ def valid_shares_amount(val):
         
 def valid_buy_fee(val):
     try:
-        if int(val) >= 0:
+        if float(val) >= 0:
             return float(val)
     except:
         parser.error("must provide a valid nonegative float")
