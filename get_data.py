@@ -186,8 +186,6 @@ def avData():
     """
     Get daily adjusted data and combine them into one dataframe
     """
-    # LZQ7F4KDJBC3QRTC
-    # ts = TimeSeries(key='H59D4Y9AFHTRQ7HQ', output_format= 'pandas')
 
     ts = TimeSeries(key=av_key.strip(), output_format= 'pandas')
 
